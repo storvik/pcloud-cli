@@ -1,16 +1,19 @@
 APPNAME = pcloud-cli
 PACKAGE = github.com/storvik/${APPNAME}
 
-VERSION_TAG=0.9.5
 COMMIT_HASH = `git rev-parse --short HEAD 2>/dev/null`
 BUILD_TIME=`date +%FT%T%z`
 
 LDFLAGS=-ldflags "-w \
-    -X main.BUILD_TIME=${BUILD_TIME} \
-    -X main.COMMIT_HASH=${COMMIT_HASH} \
-    -X main.VERSION=${VERSION_TAG}"
+    -X main.BuildTime=${BUILD_TIME} \
+    -X main.CommitHash=${COMMIT_HASH}"
 
-.PHONY: vendor docker check fmt lint test test-race vet test-cover-html help
+LDFLAGS_WITHOUT_GIT=-ldflags "-w \
+    -X main.BuildTime=${BUILD_TIME} \
+    -X main.CommitHash=dev"
+
+
+.PHONY: all clean vendor fmt lint help
 .DEFAULT_GOAL := help
 
 all: build
@@ -20,12 +23,32 @@ clean:
 	rm ./${APPNAME} || true
 	rm -rf ./release || true
 
-build:
-	go build -o ${APPNAME} ${LDFLAGS}
-
 vendor: ## Install govendor and sync dependencies
 	go get github.com/kardianos/govendor
 	govendor sync ${PACKAGE}
+
+build: vendor ## Build pcloud-cli binary
+	go build -o ${APPNAME} ${LDFLAGS}
+
+install: vendor ## Install pcloud-cli binary
+	go install ${LDFLAGS} ${PACKAGE}
+
+build-without-git: LDFLAGS = ${NOGI_LDFLAGS}
+build-without-git: vendor hugo ## Build pcloud-cli without commit hash from git
+
+fmt: ## Run gofmt linter
+	@for d in `govendor list -no-status +local | sed 's/github.com.storvik.pcloud-cli/./'` ; do \
+		if [ "`gofmt -l $$d/*.go | tee /dev/stderr`" ]; then \
+			echo "^ improperly formatted go files" && echo && exit 1; \
+		fi \
+	done
+
+lint: ## Run golint linter
+	@for d in `govendor list -no-status +local | sed 's/github.com.storvik.pcloud-cli/./'` ; do \
+		if [ "`golint $$d | tee /dev/stderr`" ]; then \
+			echo "^ golint errors!" && echo && exit 1; \
+		fi \
+	done
 
 release: clean darwin linux ## Build pcloud-cli for Os X and Linux
 

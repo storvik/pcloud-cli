@@ -12,9 +12,13 @@ Run `pcloud-cli authorize` to authorize pCloud-cli and save settings to `~/.pclo
 
 ## Build
 
-To build pcloud-cli, download it and run `make build`.
+To build pcloud-cli binary, clone and run `make pcloud-cli`.
 
-## Functions implemented (so far)
+## Installation
+
+Installing pcloud-cli can be done by cloning git repo and running `make install`.
+
+## Commands implemented (so far)
 These functions are implemented in the CLI.
 For suggestions and/or missing functions, please submit an issue.
 
