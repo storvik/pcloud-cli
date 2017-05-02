@@ -12,6 +12,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/storvik/pcloud-cli/config"
+	"github.com/storvik/pcloud-cli/helpers"
 )
 
 func init() {
@@ -29,10 +30,14 @@ also be run if noe config file is present when running pcloud-cli`,
 }
 
 func authorize(cmd *cobra.Command, args []string) {
+	authURL := "https://my.pcloud.com/oauth2/authorize?response_type=code&client_id=" + ClientID
+
 	fmt.Println("pCloud-cli authorization started.")
 	fmt.Println("This will delete the old configuration file.")
 	fmt.Println("Open URL below in browser and copy the code to authenticate.")
-	fmt.Println("https://my.pcloud.com/oauth2/authorize?response_type=code&client_id=" + ClientID)
+	fmt.Println("If clipboard utility was found the URL is automatically copied.")
+	fmt.Println(authURL)
+	helpers.Clipboard.Add(authURL)
 
 	var code string
 	reader := bufio.NewReader(os.Stdin)
