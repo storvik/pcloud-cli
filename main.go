@@ -3,9 +3,9 @@ package main
 import "github.com/storvik/pcloud-cli/commands"
 
 var (
-	VERSION    string
-	BUILD      string
-	BUILD_TIME string
+	VERSION     string
+	COMMIT_HASH string
+	BUILD_TIME  string
 
 	BASE_URL      = "https://api.pcloud.com"
 	CLIENT_ID     = "wMJTDKXtja"
@@ -13,5 +13,5 @@ var (
 )
 
 func main() {
-	commands.Execute(VERSION, BUILD, BUILD_TIME, BASE_URL, CLIENT_ID, CLIENT_SECRET)
+	commands.Execute(VERSION, COMMIT_HASH, BUILD_TIME, BASE_URL, CLIENT_ID, CLIENT_SECRET)
 }

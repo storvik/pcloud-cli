@@ -17,7 +17,7 @@ var versionCmd = &cobra.Command{
 	Long:  `The version number of pCloud-cli tells the user which version is currently being used`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(RootCmd.Use + " " + VERSION)
-		fmt.Println("Build: " + BUILD)
+		fmt.Println("Commit hash: " + COMMIT_HASH)
 		fmt.Println("Build time: " + BUILD_TIME)
 		fmt.Println("Author: " + viper.GetString("author"))
 	},

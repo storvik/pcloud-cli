@@ -17,7 +17,7 @@ import (
 
 var (
 	VERSION       string
-	BUILD         string
+	COMMIT_HASH   string
 	BUILD_TIME    string
 	BASE_URL      string
 	CLIENT_ID     string
@@ -39,9 +39,9 @@ More info can be found on github, http://github.com/storvik/pcloud-cli`,
 }
 
 // Execute adds all child commands to the root command
-func Execute(version, build, build_time, base_url, client_id, client_secret string) {
+func Execute(version, commit_hash, build_time, base_url, client_id, client_secret string) {
 	VERSION = version
-	BUILD = build
+	COMMIT_HASH = commit_hash
 	BUILD_TIME = build_time
 	BASE_URL = base_url
 	CLIENT_ID = client_id
