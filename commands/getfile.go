@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/spf13/cobra"
-	"github.com/storvik/pcloud-cli/helper"
+	"github.com/storvik/pcloud-cli/helpers"
 	"github.com/storvik/pcloud-cli/models"
 )
 
@@ -69,7 +69,7 @@ func getfile(cmd *cobra.Command, args []string) {
 
 	fileURL := "http://" + response.Hosts[0] + response.Path
 
-	helper.DownloadFile(fileURL, filepath)
+	helpers.DownloadFile(fileURL, filepath)
 
 	fmt.Println("File successfully downloaded")
 
