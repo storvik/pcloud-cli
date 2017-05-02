@@ -16,16 +16,15 @@ import (
 )
 
 var (
-	VERSION       string
-	COMMIT_HASH   string
-	BUILD_TIME    string
-	BASE_URL      string
-	CLIENT_ID     string
-	CLIENT_SECRET string
+	CommitHash   string
+	BuildTime    string
+	BaseURL      string
+	ClientID     string
+	ClientSecret string
 
-	ACCESS_TOKEN string
-	cfgFile      string
-	verbose      bool
+	AccessToken string
+	cfgFile     string
+	verbose     bool
 )
 
 var RootCmd = &cobra.Command{
@@ -39,13 +38,12 @@ More info can be found on github, http://github.com/storvik/pcloud-cli`,
 }
 
 // Execute adds all child commands to the root command
-func Execute(version, commit_hash, build_time, base_url, client_id, client_secret string) {
-	VERSION = version
-	COMMIT_HASH = commit_hash
-	BUILD_TIME = build_time
-	BASE_URL = base_url
-	CLIENT_ID = client_id
-	CLIENT_SECRET = client_secret
+func Execute(commithash, buildtime, baseurl, clientid, clientsecret string) {
+	CommitHash = commithash
+	BuildTime = buildtime
+	BaseURL = baseurl
+	ClientID = clientid
+	ClientSecret = clientsecret
 
 	if err := RootCmd.Execute(); err != nil {
 		fmt.Println(err)
@@ -56,7 +54,7 @@ func Execute(version, commit_hash, build_time, base_url, client_id, client_secre
 func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.pcloud-cli.json)")
-	RootCmd.PersistentFlags().StringVar(&ACCESS_TOKEN, "token", "", "bearer token to access API, can be used when not using config file")
+	RootCmd.PersistentFlags().StringVar(&AccessToken, "token", "", "bearer token to access API, can be used when not using config file")
 	RootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose output for debugging")
 
 	viper.SetDefault("author", "Petter S. Storvik <petterstorvik@gmail.com>")
@@ -76,14 +74,14 @@ func initConfig() {
 
 	err := viper.ReadInConfig()
 	if err != nil { // No config file found, authorize of token not set
-		if ACCESS_TOKEN == "" {
+		if AccessToken == "" {
 			fmt.Println("Config file not found, authorize or pass token with --token")
 		}
 	} else {
 		if verbose {
 			fmt.Println("Configuration file, " + viper.ConfigFileUsed() + " found")
 		}
-		ACCESS_TOKEN = viper.GetString("access_token")
+		AccessToken = viper.GetString("access_token")
 	}
 }
 
@@ -102,21 +100,21 @@ func NewPcloud() *Pcloud {
 // Query API endpoint with url parameters. If authorization is true, the authorization
 // header is set. Returns json []byte and optional error from server.
 func (p *Pcloud) Query() ([]byte, error) {
-	var Url *url.URL
-	Url, err := url.Parse(BASE_URL)
+	var URL *url.URL
+	URL, err := url.Parse(BaseURL)
 	if err != nil {
 		fmt.Println("Error: Could not parse base url")
 		os.Exit(1)
 	}
 
-	Url.Path += p.Endpoint
-	Url.RawQuery = p.Parameters.Encode()
+	URL.Path += p.Endpoint
+	URL.RawQuery = p.Parameters.Encode()
 
 	if verbose {
-		fmt.Println("Query path: " + Url.String())
+		fmt.Println("Query path: " + URL.String())
 	}
 
-	request, err := http.NewRequest("POST", Url.String(), p.Body)
+	request, err := http.NewRequest("POST", URL.String(), p.Body)
 	for key, value := range p.Headers {
 		request.Header.Add(key, value)
 	}

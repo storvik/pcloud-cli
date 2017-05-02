@@ -91,7 +91,7 @@ func uploadfile(cmd *cobra.Command, args []string) {
 	pcloud := NewPcloud()
 	pcloud.Endpoint = "/uploadfile"
 	pcloud.Parameters = parameters
-	pcloud.AccessToken = ACCESS_TOKEN
+	pcloud.AccessToken = AccessToken
 	pcloud.Body = body
 	pcloud.Headers["Content-Type"] = writer.FormDataContentType()
 

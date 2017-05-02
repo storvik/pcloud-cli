@@ -44,7 +44,7 @@ func checksumfile(cmd *cobra.Command, args []string) {
 	pcloud := new(Pcloud)
 	pcloud.Endpoint = "/checksumfile"
 	pcloud.Parameters = parameters
-	pcloud.AccessToken = ACCESS_TOKEN
+	pcloud.AccessToken = AccessToken
 
 	resp, err := pcloud.Query()
 	if err != nil {

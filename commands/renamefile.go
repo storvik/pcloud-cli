@@ -50,7 +50,7 @@ func renamefile(cmd *cobra.Command, args []string) {
 	pcloud := new(Pcloud)
 	pcloud.Endpoint = "/renamefile"
 	pcloud.Parameters = parameters
-	pcloud.AccessToken = ACCESS_TOKEN
+	pcloud.AccessToken = AccessToken
 
 	resp, err := pcloud.Query()
 	if err != nil {

@@ -49,7 +49,7 @@ func deletefolder(cmd *cobra.Command, args []string) {
 
 	pcloud := new(Pcloud)
 	pcloud.Parameters = parameters
-	pcloud.AccessToken = ACCESS_TOKEN
+	pcloud.AccessToken = AccessToken
 
 	switch {
 	case deleterecursive:

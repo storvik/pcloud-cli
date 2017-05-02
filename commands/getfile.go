@@ -47,7 +47,7 @@ func getfile(cmd *cobra.Command, args []string) {
 	pcloud := NewPcloud()
 	pcloud.Endpoint = "/getfilelink"
 	pcloud.Parameters = parameters
-	pcloud.AccessToken = ACCESS_TOKEN
+	pcloud.AccessToken = AccessToken
 
 	resp, err := pcloud.Query()
 	if err != nil {
@@ -67,9 +67,9 @@ func getfile(cmd *cobra.Command, args []string) {
 		filepath = args[1] + filepath
 	}
 
-	fileUrl := "http://" + response.Hosts[0] + response.Path
+	fileURL := "http://" + response.Hosts[0] + response.Path
 
-	helper.DownloadFile(fileUrl, filepath)
+	helper.DownloadFile(fileURL, filepath)
 
 	fmt.Println("File successfully downloaded")
 

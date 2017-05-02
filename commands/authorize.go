@@ -32,7 +32,7 @@ func authorize(cmd *cobra.Command, args []string) {
 	fmt.Println("pCloud-cli authorization started.")
 	fmt.Println("This will delete the old configuration file.")
 	fmt.Println("Open URL below in browser and copy the code to authenticate.")
-	fmt.Println("https://my.pcloud.com/oauth2/authorize?response_type=code&client_id=" + CLIENT_ID)
+	fmt.Println("https://my.pcloud.com/oauth2/authorize?response_type=code&client_id=" + ClientID)
 
 	var code string
 	reader := bufio.NewReader(os.Stdin)
@@ -45,8 +45,8 @@ func authorize(cmd *cobra.Command, args []string) {
 	fmt.Printf("The code you entered: %s", code)
 
 	parameters := url.Values{}
-	parameters.Add("client_id", CLIENT_ID)
-	parameters.Add("client_secret", CLIENT_SECRET)
+	parameters.Add("client_id", ClientID)
+	parameters.Add("client_secret", ClientSecret)
 	parameters.Add("code", strings.Replace(code, "\n", "", -1))
 
 	pcloud := NewPcloud()
