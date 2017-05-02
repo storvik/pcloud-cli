@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 func init() {
@@ -18,5 +19,6 @@ var versionCmd = &cobra.Command{
 		fmt.Println(RootCmd.Use + " " + VERSION)
 		fmt.Println("Build: " + BUILD)
 		fmt.Println("Build time: " + BUILD_TIME)
+		fmt.Println("Author: " + viper.GetString("author"))
 	},
 }
