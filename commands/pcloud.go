@@ -56,6 +56,7 @@ func Execute(version, build, build_time, base_url, client_id, client_secret stri
 func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.pcloud-cli.json)")
+	RootCmd.PersistentFlags().StringVar(&ACCESS_TOKEN, "token", "", "bearer token to access API, can be used when not using config file")
 	RootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose output for debugging")
 
 	viper.SetDefault("author", "Petter S. Storvik <petterstorvik@gmail.com>")
@@ -63,20 +64,25 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" { // Use custom config file if --config flag set
-		viper.SetConfigFile(cfgFile)
-	}
 
 	viper.SetConfigName(".pcloud-cli")
 	viper.AddConfigPath("$HOME")
 	viper.AddConfigPath(".")
 	viper.AutomaticEnv()
 
+	if cfgFile != "" { // Use custom config file if --config flag set
+		viper.SetConfigFile(cfgFile)
+	}
+
 	err := viper.ReadInConfig()
 	if err != nil { // No config file found, authorize of token not set
-		fmt.Println("Config file not found, authorize or pass token ")
+		if ACCESS_TOKEN == "" {
+			fmt.Println("Config file not found, authorize or pass token with --token")
+		}
 	} else {
-		fmt.Println("Configuration file, " + viper.ConfigFileUsed() + " found")
+		if verbose {
+			fmt.Println("Configuration file, " + viper.ConfigFileUsed() + " found")
+		}
 		ACCESS_TOKEN = viper.GetString("access_token")
 	}
 }
