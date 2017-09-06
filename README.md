@@ -6,7 +6,7 @@ Command line interface to pCloud API written in Go.
 
 ## Usage
 
-``` shell
+```
 pcloud-cli --help
 ```
 
@@ -24,7 +24,7 @@ Installing pcloud-cli can be done by cloning git repo and running `make install`
 
 Main command help:
 
-``` shell
+```
 Usage:
   pCloud-cli [flags]
   pCloud-cli [command]
@@ -46,7 +46,7 @@ Flags:
 
 File sub-command help:
 
-``` shell
+```
 Usage:
   pCloud-cli file [flags]
   pCloud-cli file [command]

@@ -6,12 +6,12 @@ var (
 	// CommitHash describing current build
 	CommitHash string
 	// BuildTime marking time when built
-	BuildTime  string
+	BuildTime string
 
 	// BaseURL to pCloud API
-	BaseURL      = "https://api.pcloud.com"
+	BaseURL = "https://api.pcloud.com"
 	// ClientID is pCloud ID of pcloud-cli
-	ClientID     = "wMJTDKXtja"
+	ClientID = "wMJTDKXtja"
 	// ClientSecret is secret key needed to identify app
 	ClientSecret = "bCS3k9W89t0zL51qpcL2Ck3bjnF7"
 )
