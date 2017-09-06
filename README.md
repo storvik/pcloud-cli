@@ -71,7 +71,7 @@ Global Flags:
 
 Folder sub-command help:
 
-``` shell
+```
 Usage:
   pCloud-cli folder [flags]
   pCloud-cli folder [command]
