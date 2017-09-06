@@ -1,5 +1,6 @@
 package models
 
+// DeletefolderResponse contains server response after deletefolder call
 type DeletefolderResponse struct {
 	ID       string `json:"id"`
 	Metadata struct {
@@ -7,15 +8,16 @@ type DeletefolderResponse struct {
 		Name           string `json:"name"`
 		Modified       string `json:"modified"`
 		IsMine         bool   `json:"ismine"`
-		Id             string `json:"id"`
+		ID             string `json:"id"`
 		IsShared       bool   `json:"isshared"`
 		IsFolder       bool   `json:"isfolder"`
 		IsDeleted      bool   `json:"isdeleted"`
-		ParentFolderId int    `json:"parentfolderid"`
-		FolderId       int    `json:"folderid"`
+		ParentFolderID int    `json:"parentfolderid"`
+		FolderID       int    `json:"folderid"`
 	} `json:"metadata"`
 }
 
+// DeletefolderRecursiveResponse contains server response after recursive delete folder call
 type DeletefolderRecursiveResponse struct {
 	DeletedFiles   int `json:"deletedfiles"`
 	DeletedFolders int `json:"deletedfolders"`

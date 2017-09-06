@@ -16,17 +16,25 @@ import (
 )
 
 var (
-	CommitHash   string
-	BuildTime    string
-	BaseURL      string
-	ClientID     string
-	ClientSecret string
+	// CommitHash describing current build
+	CommitHash string
+	// BuildTime marking time when built
+	BuildTime  string
 
+	// BaseURL to pCloud API
+	BaseURL      = "https://api.pcloud.com"
+	// ClientID is pCloud ID of pcloud-cli
+	ClientID     = "wMJTDKXtja"
+	// ClientSecret is secret key needed to identify app
+	ClientSecret = "bCS3k9W89t0zL51qpcL2Ck3bjnF7"
+
+	// AccessToken for user
 	AccessToken string
 	cfgFile     string
 	verbose     bool
 )
 
+// RootCmd declares the main command
 var RootCmd = &cobra.Command{
 	Use:   "pCloud-cli",
 	Short: "pCloud-cli is a command line interface to the pCloud API.",
@@ -85,6 +93,7 @@ func initConfig() {
 	}
 }
 
+// Pcloud struct containing requests
 type Pcloud struct {
 	Endpoint    string
 	Parameters  url.Values
@@ -93,6 +102,7 @@ type Pcloud struct {
 	Headers     map[string]string
 }
 
+// NewPcloud return new Pcloud struct, defined above 
 func NewPcloud() *Pcloud {
 	return &Pcloud{Headers: make(map[string]string)}
 }

@@ -3,6 +3,7 @@ package commands
 import "github.com/spf13/cobra"
 
 var (
+	// FolderCmd declares the sub-command group folder
 	FolderCmd = &cobra.Command{
 		Use:   "folder",
 		Short: "Actions to manage folders.",

@@ -5,11 +5,12 @@ import (
 	"os/exec"
 )
 
+// Clipboard variable
 var Clipboard clipboard
 
 type clipboard struct{}
 
-func (self clipboard) Add(str string) error {
+func (c clipboard) Add(str string) error {
 	if _, err := exec.LookPath(xclip); err == nil {
 		return errors.New("Error xclip needed to use clipboard")
 	}

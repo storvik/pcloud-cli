@@ -6,9 +6,9 @@ import (
 	"os"
 )
 
-// WriteConfig writes json config file, filename.json, to path. Expected input is
-// a ConfigFile struct
-func WriteConfig(path, filename string, config *ConfigFile) error {
+// WriteConfig writes json config file, filename.json, to path.
+// Expected input is a config.File struct
+func WriteConfig(path, filename string, config *File) error {
 	file := path + "/" + filename + ".json"
 	fmt.Println("Writing config file: " + file)
 	f, err := os.Create(file)

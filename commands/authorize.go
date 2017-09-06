@@ -22,7 +22,7 @@ func init() {
 var authorizeCmd = &cobra.Command{
 	Use:   "authorize",
 	Short: "Authorize with pCloud.",
-	Long: `Authorization is neccessary to be able to interact with the pCloud API.
+	Long: `Authorization is necessary to be able to interact with the pCloud API.
 Will re-authorize with pCloud and rewrite config file. This command will
 also be run if noe config file is present when running pcloud-cli`,
 
@@ -70,7 +70,7 @@ func authorize(cmd *cobra.Command, args []string) {
 		panic(err)
 	}
 
-	var conf config.ConfigFile
+	var conf config.File
 
 	conf.UserID = int(dat["userid"].(float64))
 	conf.AccessToken = dat["access_token"].(string)

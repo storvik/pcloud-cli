@@ -3,6 +3,7 @@ package commands
 import "github.com/spf13/cobra"
 
 var (
+	// FileCmd declares the sub-command group file
 	FileCmd = &cobra.Command{
 		Use:   "file",
 		Short: "Actions to manage files.",

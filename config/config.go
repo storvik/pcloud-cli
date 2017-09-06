@@ -1,6 +1,7 @@
 package config
 
-type ConfigFile struct {
+// File containing configuration data 
+type File struct {
 	UserID      int    `json:"userid"`
 	AccessToken string `json:"access_token"`
 }

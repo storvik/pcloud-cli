@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-// Download file from url and save it as filepath
+// DownloadFile file from url and save it as filepath
 func DownloadFile(url, filepath string) error {
 	out, err := os.Create(filepath)
 	if err != nil {

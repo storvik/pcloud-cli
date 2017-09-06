@@ -1,5 +1,6 @@
 package models
 
+// UploadfileResponse contains server response after update call
 type UploadfileResponse struct {
 	FiledIds []int `json:"fileids"`
 	Metadata []struct {
@@ -7,10 +8,10 @@ type UploadfileResponse struct {
 		Path           string `json:"path"`
 		Category       int    `json:"category"`
 		Modified       string `json:"modified"`
-		Id             string `json:"id"`
-		FileId         int    `json:"fileid"`
+		ID             string `json:"id"`
+		FileID         int    `json:"fileid"`
 		IsFolder       bool   `json:"isfolder"`
-		ParentFolderId int    `json:"parentfolderid"`
+		ParentFolderID int    `json:"parentfolderid"`
 		Size           int    `json:"size"`
 		ContentType    string `json:"contenttype"`
 	} `json:"metadata"`
