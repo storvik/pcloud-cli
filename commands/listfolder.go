@@ -91,7 +91,7 @@ func listfolder(cmd *cobra.Command, args []string) {
 	w.Init(os.Stdout, 20, 4, 4, ' ', 0)
 	fmt.Fprintf(w, "%s\t%s\t%s\n", "Name", "Modified", "ID")
 	for i := range response.Metadata.Contents {
-		fmt.Fprintf(w, "%s\t%s\t%d\n", response.Metadata.Contents[i].Name, response.Metadata.Contents[i].Modified, response.Metadata.Contents[i].FolderId)
+		fmt.Fprintf(w, "%s\t%s\t%d\n", response.Metadata.Contents[i].Name, response.Metadata.Contents[i].Modified, response.Metadata.Contents[i].FolderID)
 	}
 	w.Flush()
 }

@@ -79,6 +79,6 @@ func createfolder(cmd *cobra.Command, args []string) {
 		fmt.Println("Name: " + response.Metadata.Name)
 		fmt.Println("Path: " + response.Metadata.Path)
 		fmt.Println("Modified: " + response.Metadata.Modified)
-		fmt.Println("Folder ID: " + strconv.Itoa(response.Metadata.FolderId))
+		fmt.Println("Folder ID: " + strconv.Itoa(response.Metadata.FolderID))
 	}
 }
